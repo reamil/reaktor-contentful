@@ -5,25 +5,33 @@
   "scripts": {
     "migrate:contentful": "ts-node -P contentful-migrations/tsconfig.json node_modules/.bin/contentful-migration -s $CONTENTFUL_SPACE_ID -a $CONTENTFUL_MANAGEMENT_TOKEN contentful-migrations/init.ts",
     "dev": "next dev",
-    "build": "next build",
+    "build": "yarn codegen && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "codegen": "graphql-codegen --config codegen.ts",
+    "postinstall": "yarn codegen"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.12",
     "@types/node": "18.15.11",
     "@types/react": "18.0.37",
     "@types/react-dom": "18.0.11",
     "autoprefixer": "10.4.14",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "graphql": "^16.6.0",
     "next": "13.3.0",
     "postcss": "8.4.22",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "server-only": "^0.0.1",
     "tailwindcss": "3.3.1",
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "3.3.1",
+    "@graphql-codegen/client-preset": "3.0.1",
+    "@graphql-codegen/introspection": "3.0.1",
     "contentful-migration": "^4.12.9",
     "prettier": "^2.8.7",
     "ts-node": "^10.9.1"

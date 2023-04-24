@@ -15,6 +15,10 @@
 # production
 /build
 
+# Generated source
+graphql.schema.json
+src/gql
+
 # misc
 .DS_Store
 *.pem

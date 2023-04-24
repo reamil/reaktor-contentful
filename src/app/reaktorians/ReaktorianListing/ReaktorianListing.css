@@ -1,0 +1,21 @@
+.reaktorian-listing {
+  width: 100%;
+}
+
+.reaktorian-listing .item {
+  background: white;
+  box-shadow: 10px 5px 5px #adadad;
+  border-radius: 25px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.reaktorian-listing .item:hover {
+  background: #f5f5f5;
+}
+
+.reaktorian-listing .item img {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
