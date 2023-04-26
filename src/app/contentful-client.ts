@@ -1,22 +1,17 @@
 import 'server-only';
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+import { createClient } from 'contentful';
 
-const httpLink = createHttpLink({
-  uri: 'https://graphql.contentful.com/content/v1/spaces/hsg986itelz1',
-});
+const getMandatoryEnvVar = (name: string): string => {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`Missing mandatory env var ${name}`);
+  }
+  return value;
+};
 
-const authLink = setContext((_, { headers }) => ({
-  headers: {
-    ...headers,
-    authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
-    next: { revalidate: 1 },
-  },
-}));
-
-const contentfulClient = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+const contentfulClient = createClient({
+  space: getMandatoryEnvVar('CONTENTFUL_SPACE_ID'),
+  accessToken: getMandatoryEnvVar('CONTENTFUL_ACCESS_TOKEN'),
 });
 
 export default contentfulClient;

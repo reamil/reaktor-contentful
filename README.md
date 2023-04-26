@@ -1,5 +1,7 @@
 # Contentful - Reaktor training materials
 
+Note that each branch solves the same problem in different ways, so that might be worth checking out.
+
 1. Install the contentful CLI:
    * `brew install contentful-cli`
    * `npm install -g contentful-cli`
