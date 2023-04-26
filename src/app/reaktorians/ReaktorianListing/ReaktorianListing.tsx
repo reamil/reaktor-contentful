@@ -2,11 +2,15 @@ import 'server-only';
 import { graphql } from '../../../gql';
 import contentfulClient from '@reaktor-contentful/app/contentful-client';
 import './ReaktorianListing.css';
+import Link from 'next/link';
 
 const listReaktorians = graphql(/* GraphQL */ `
   query ListReaktorians {
     reaktorianCollection {
       items {
+        sys {
+          id
+        }
         name
         aboutMe
         picture {
@@ -27,7 +31,8 @@ export default async function ReaktorianListing() {
 
       <div style={{ marginTop: '20px' }}>
         {data.data.reaktorianCollection?.items?.map((reaktorian, i) => (
-          <div
+          <Link
+            href={`/reaktorians/${reaktorian?.sys.id}`}
             key={`reaktorian_${i}`}
             className="item grid grid-cols-3 divide-x"
           >
@@ -36,7 +41,7 @@ export default async function ReaktorianListing() {
             </div>
             <div className="name">{reaktorian?.name}</div>
             <div>{reaktorian?.aboutMe}</div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

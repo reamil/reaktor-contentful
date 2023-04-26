@@ -34,7 +34,54 @@ const migration: MigrationFunction = (migration) => {
   pastProjects
     .createField('description')
     .name('Project description')
-    .type('RichText');
+    .localized(true)
+    .type('RichText')
+    .validations([
+      {
+        nodes: {
+          'asset-hyperlink': [
+            {
+              size: {
+                max: 5,
+              },
+              message: null,
+            },
+          ],
+          'embedded-asset-block': [
+            {
+              size: {
+                max: 5,
+              },
+              message: null,
+            },
+          ],
+          'embedded-entry-block': [
+            {
+              size: {
+                max: 3,
+              },
+              message: null,
+            },
+          ],
+          'embedded-entry-inline': [
+            {
+              size: {
+                max: 5,
+              },
+              message: null,
+            },
+          ],
+          'entry-hyperlink': [
+            {
+              size: {
+                max: 5,
+              },
+              message: null,
+            },
+          ],
+        },
+      },
+    ]);
 
   // reference to a different content-type
   pastProjects

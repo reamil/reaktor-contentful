@@ -10,12 +10,12 @@ const authLink = setContext((_, { headers }) => ({
   headers: {
     ...headers,
     authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+    next: { revalidate: 1 },
   },
 }));
 
 const contentfulClient = new ApolloClient({
   link: authLink.concat(httpLink),
-  uri: 'https://graphql.contentful.com/content/v1/spaces/hsg986itelz1',
   cache: new InMemoryCache(),
 });
 

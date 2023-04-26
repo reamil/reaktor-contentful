@@ -14,3 +14,5 @@
    * `yarn migrate:contentful`
    * Check out "Content model" in the contentful space (you may need to refresh the page)
    * Add "Content"
+5. Add localizations
+
